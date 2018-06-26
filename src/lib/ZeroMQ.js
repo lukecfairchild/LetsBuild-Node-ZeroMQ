@@ -19,11 +19,15 @@ Subscriber.on('message', function (buffer) {
   const event = JSON.parse(buffer.toString('utf8'))
 
   if (subscriberListeners[event.publisherid]) {
-    const callbacks = subscriberListeners[event.publisherid]
-    const data      = JSON.parse(event.message)
+    try {
+      const callbacks = subscriberListeners[event.publisherid]
+      const data      = JSON.parse(event.message)
 
-    for (const i in callbacks) {
-      callbacks[i](data)
+      for (const i in callbacks) {
+        callbacks[i](data)
+      }
+    } catch (exception) {
+      console.log(exception)
     }
   }
 })
