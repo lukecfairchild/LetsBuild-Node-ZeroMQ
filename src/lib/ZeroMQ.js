@@ -51,8 +51,8 @@ module.exports = {
   send : function (data) {
     Publisher.send(JSON.stringify({
       'publisherid' : 'node',
-      'channel'     : data.channel || 'global',
-      'message'     : data.message
+      'channel'     : 'global',
+      'message'     : data
     }))
   }
 }
